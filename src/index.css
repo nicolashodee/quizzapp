@@ -13,6 +13,7 @@ body {
 
 body {
   background-color: #5D4037;
+  padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +32,7 @@ body {
 .app {
   background-color: #212121;
   color: #FFFFFF;
-  width: 1050px;
+  width: auto;
   min-height: 200px;
   height: min-content;
   border-radius: 5px;
@@ -45,8 +46,10 @@ body {
 }
 
 .score-section {
+
   display: flex;
   font-size: 24px;
+  justify-content: center;
   align-items: center;
   margin-top: 15px;
 }
@@ -90,7 +93,7 @@ body {
 }
 
 button {
-  width: 50%;
+  width: 100%;
   font-size: 16px;
   color: black;
   background-color: #D7CCC8;

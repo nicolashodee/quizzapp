@@ -43,16 +43,17 @@ export default function App() {
 		
 		// ECRAN d'AFFICHAGE pour les results 
 		<div className='app'>
-			Votre score actuel {ecoScore}
+			
 			
 			{showScore ? (
 				//SI showScore is TRUE, on affiche le score final 
 				<div className='score-section'>
-					Vous avez marqué {ecoScore} eco points 🦄, félicitations ! <br/>
+					Vous avez marqué <br/> {ecoScore} eco points 🦄, félicitations !
 				</div>
 			) : (
 				//SINON, on affiche les questions
 				<>
+					<div>Votre score actuel {ecoScore}</div>
 					<div className='question-section'>
 						<div className='question-count'>
 							<span>Question {currentQuestion + 1}</span>/{questions.length}
