@@ -3,52 +3,34 @@ import React, { useState } from 'react';
 export default function App() {
 	const questions = [
 		{
-			questionText: 'What is the capital of France?',
+			questionText: 'Combien de litres d\'eau as tu à la maison batard ?',
 			answerOptions: [
-				{ answerText: 'New York', isCorrect: false },
-				{ answerText: 'London', isCorrect: false },
-				{ answerText: 'Paris', isCorrect: true },
-				{ answerText: 'Dublin', isCorrect: false },
+				{ answerText: 'un litre (+1pt)', answerScore: 1 },
+				{ answerText: 'six litres (+6pt)', answerScore: 6 },
+				{ answerText: 'dix litres (+10pt)', answerScore: 10 },
+				{ answerText: 'vingt litres (+20pt)', answerScore: 20 },
 			],
 		},
 		{
-			questionText: 'Who is CEO of Tesla?',
+			questionText: 'Et combien de panneaux solaires enculé ?',
 			answerOptions: [
-				{ answerText: 'Jeff Bezos', isCorrect: false },
-				{ answerText: 'Elon Musk', isCorrect: true },
-				{ answerText: 'Bill Gates', isCorrect: false },
-				{ answerText: 'Tony Stark', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'The iPhone was created by which company?',
-			answerOptions: [
-				{ answerText: 'Apple', isCorrect: true },
-				{ answerText: 'Intel', isCorrect: false },
-				{ answerText: 'Amazon', isCorrect: false },
-				{ answerText: 'Microsoft', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'How many Harry Potter books are there?',
-			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: '1 (+1pt)', answerScore: 1 },
+				{ answerText: '2 (+2pt)', answerScore: 2 },
+				{ answerText: '3 (+3pt)', answerScore: 3 },
+				{ answerText: '4 (+4pt)', answerScore: 4 },
 			],
 		},
 	];
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
-
-	const handleAnswerOptionClick = (isCorrect) => {
-		if (isCorrect) {
-			setScore(score + 1);
-		}
-
+	const [ecoScore, setEcoScore] = useState(0);
+	
+	const handleAnswerOptionClick = (answerScore, starString) => {
+		//ajoute le nombre d'eco points au total
+		setEcoScore(ecoScore + answerScore);
+	
+		//passe à la question suivante et verifie si on est à la derniere question 
 		const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
@@ -56,13 +38,20 @@ export default function App() {
 			setShowScore(true);
 		}
 	};
+
 	return (
+		
+		// ECRAN d'AFFICHAGE 
 		<div className='app'>
+			Votre score actuel {ecoScore}
+		
 			{showScore ? (
+				//SI showScore is TRUE, on affiche le score final 
 				<div className='score-section'>
-					You scored {score} out of {questions.length}
+					Vous avez marqué {ecoScore} eco points 🦄, félicitations ! <br/>
 				</div>
 			) : (
+				//SINON, on affiche les questions
 				<>
 					<div className='question-section'>
 						<div className='question-count'>
@@ -72,7 +61,7 @@ export default function App() {
 					</div>
 					<div className='answer-section'>
 						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+							<button onClick={() => handleAnswerOptionClick(answerOption.answerScore)}>{answerOption.answerText}</button>
 						))}
 					</div>
 				</>
