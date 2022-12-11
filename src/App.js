@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { render } from 'react-dom';
-import { useRef } from 'react';
 import { useForm } from 'react-hook-form'; 
 
 export default function App() {
