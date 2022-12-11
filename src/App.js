@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { render } from 'react-dom';
 
 export default function App() {
 
@@ -10,11 +11,11 @@ export default function App() {
 		{
 			questionText: 'Combien de litres d\'eau as tu à la maison batard ?',
 			answerOptions: [
-				{ answerText: 'un litre (+1pt)', answerScore: 1 },
+				{ answerText: 'un litre (0pt)', answerScore: 0 },
 				{ answerText: 'six litres (+6pt)', answerScore: 6 },
 				{ answerText: 'dix litres (+10pt)', answerScore: 10 },
 				{ answerText: 'vingt litres (+20pt)', answerScore: 20 },
-			],
+			]
 		},
 		{
 			questionText: 'Et combien de panneaux solaires enculé ?',
@@ -23,8 +24,17 @@ export default function App() {
 				{ answerText: '2 (+2pt)', answerScore: 2 },
 				{ answerText: '3 (+3pt)', answerScore: 3 },
 				{ answerText: '4 (+4pt)', answerScore: 4 },
-			],
+			]
 		},
+		{
+			questionText: 'Et combien de shots de vodka ?',
+			answerOptions: [
+				{ answerText: '1 (+11pt)', answerScore: 11 },
+				{ answerText: '2 (+12pt)', answerScore: 12 },
+				{ answerText: '3 (+13pt)', answerScore: 13 },
+				{ answerText: '4 (+14pt)', answerScore: 14 },
+			]
+		}
 	];
 
 	//on déclare les états et les states manager pour REACT
@@ -32,6 +42,29 @@ export default function App() {
 	const [showScore, setShowScore] = useState(false);
 	const [ecoScore, setEcoScore] = useState(0);
 	
+	//fonction pour réinitialiser le test
+	const initTest = () => {
+		setShowScore(0);
+		setCurrentQuestion(0);
+		setEcoScore(0);
+	}
+
+	// fonction pour afficher un texte variant selon le score 
+	const textScore = (x) => { 
+			if(x < 10) {	
+				return <p>Vous etes une grosse 💩</p> ;
+			}
+			else if (x >=10 && x < 20) {
+				return <p>Vous etes une petite 💩</p>;
+			}
+			else if (x >=20 && x<30) {
+				return <p>Vous etes pas mal 🙏</p>;
+			}
+			else {
+				return <p>Bravo ! 💥</p>;
+			}
+	}
+
 	// on crée une fonction qui va gérer le click sur une réponse 
 	const handleAnswerOptionClick = (answerScore, starString) => {
 		//ajoute le nombre d'eco points de la réponse au total des points
@@ -54,17 +87,23 @@ export default function App() {
 			{showScore ? (
 				//SI showScore is true (derniere question atteinte), on affiche le score final 
 				<div className='score-section'>
-					Vous avez marqué <br/> {ecoScore} eco points 🦄, félicitations !
+					Votre score est de {ecoScore}
+					{textScore(ecoScore)}
+
+					<p>
+						<button onClick={	() => initTest()	}>Réinitialiser le test</button>	
+					</p>
 				</div>
 			) : (
 				//SINON, on affiche les questions
 				<>
-					<div>Votre score actuel {ecoScore}</div>
 					<div className='question-section'>
 						<div className='question-count'>
 							<span>Question {currentQuestion + 1}</span>/{questions.length}
 						</div>
+						
 						<div className='question-text'>{questions[currentQuestion].questionText}</div>
+						<p style={{fontSize:'10px'}}><i>sélectionez la situation qui vous correspond le plus</i></p>
 					</div>
 					<div className='answer-section'>
 						{/* on crée une boucle pour afficher les différentes réponses en itérant à travers les objets de l'array questions */}
