@@ -7,7 +7,7 @@ export default function App() {
 	// chaque objet contient une question, et un autre array d'objets, chacun étant une réponse avec son score correspondant
 	// on utilisera du JS pour accéder aux différents objets
 
-	const {handleSubmit, register, formState : {errors}} = useForm()
+	const {handleSubmit, register} = useForm()
 
 	const defaultQuestions = [
 		{
@@ -58,21 +58,9 @@ export default function App() {
 	];
 	const [questions, setQuestions] = useState(defaultQuestions)
 	
-	
-
-	
-	const [data, setData] = useState(null)
-
-	function getData(event) {
-		setData(event.target.value)
-		console.log(event.target.value)
-		
-	}
 
 	function onSubmit(data) {
 		console.log(data)
-		questions.push(data)
-		console.log(questions)
 	}
 
 	
@@ -158,12 +146,12 @@ export default function App() {
 						<div>
 							<form onSubmit={handleSubmit(onSubmit)}>
 									<label>Nouvelle question : </label>
-									<input type='text' className='question-input' onChange={getData} name="questionTextInput" {...register("questionText")}/><br/>
+									<input type='text' className='question-input'  name="questionTextInput" {...register("questionText")}/><br/>
 	
-									<div className='form-input'><label>Reponse 1</label><input className='answer-input' type='text' onChange={getData} name="answerTextInput" {...register("answerOptions[0][answerText]")}/> <label>EcoScore:</label><input className='score-input' name="answerScoreInput" {...register("answerOptions[0][anserScore]")}></input></div>
-									<div><label>Reponse 2</label><input className='answer-input' type='text' onChange={getData} name="answerTextInput" {...register("answerOptions[1][answerText]")}/> <label>EcoScore:</label><input className='score-input' name="answerScoreInput" {...register("answerOptions[1][anserScore]")}></input><br/></div>
-									<div><label>Reponse 3</label><input className='answer-input' type='text' onChange={getData} name="answerTextInput" {...register("answerOptions[2][answerText]")}/> <label>EcoScore:</label><input className='score-input' name="answerScoreInput" {...register("answerOptions[2][anserScore]")}></input><br/></div>
-									<div><label>Reponse 4</label><input className='answer-input' type='text' onChange={getData} name="answerTextInput" {...register("answerOptions[3][answerText]")}/>  <label>EcoScore:</label><input className='score-input'name="answerScoreInput" {...register("answerOptions[3][anserScore]")}></input><br/></div>
+									<div className='form-input'><label>Reponse 1</label><input className='answer-input' type='text' name="answerTextInput" {...register("answerOptions[0][answerText]")}/> <label>EcoScore:</label><input className='score-input' name="answerScoreInput" {...register("answerOptions[0][anserScore]")}></input></div>
+									<div><label>Reponse 2</label><input className='answer-input' type='text'  name="answerTextInput" {...register("answerOptions[1][answerText]")}/> <label>EcoScore:</label><input className='score-input' name="answerScoreInput" {...register("answerOptions[1][anserScore]")}></input><br/></div>
+									<div><label>Reponse 3</label><input className='answer-input' type='text'  name="answerTextInput" {...register("answerOptions[2][answerText]")}/> <label>EcoScore:</label><input className='score-input' name="answerScoreInput" {...register("answerOptions[2][anserScore]")}></input><br/></div>
+									<div><label>Reponse 4</label><input className='answer-input' type='text'  name="answerTextInput" {...register("answerOptions[3][answerText]")}/>  <label>EcoScore:</label><input className='score-input'name="answerScoreInput" {...register("answerOptions[3][anserScore]")}></input><br/></div>
 								
 								<input type='submit' value="Ajouter" className='submit-button'/>
 							</form>
