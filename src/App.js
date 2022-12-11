@@ -174,7 +174,7 @@ export default function App() {
 								{questions.map(	(question,index) => 
 									(
 									
-										<li onClick={() => handleRemove({index})}>
+										<li key={index} onClick={() => handleRemove({index})}>
 											Enlever la question {index} : {question.questionText.slice(0,45)}...
 										</li>
 									
@@ -197,8 +197,8 @@ export default function App() {
 						{/* puis on affiche le résultat à l'intérieur d'un bouton qui va déclencher la fonction handleAnswerOptionClick */}
 						{/* on n'oublie pas d'entrer comme argument answerScore que la fonction utilisera pour définir ecoScore */}
 						
-						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerOptionClick(answerOption.answerScore)}>{answerOption.answerText}</button>
+						{questions[currentQuestion].answerOptions.map((answerOption, index) => (
+							<button key={index} onClick={() => handleAnswerOptionClick(answerOption.answerScore)}>{answerOption.answerText}</button>
 						))}
 					</div>
 				</>
