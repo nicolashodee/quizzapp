@@ -7,7 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 * {
-  font-family: "Verdana", cursive, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
   color: #ffffff;
 }
 
@@ -18,6 +19,13 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  
+}
+
+input {
+  color: white;
+  border: none;
+  outline: none;
 }
 
 #title {
@@ -28,8 +36,73 @@ body {
    
   text-align: center;
 }
+/* regles pour le formulaire */
+form { 
+  width: 100%;
+  border: none;
+  padding: 15px;
+}
+label { 
+  
+  padding: 15px;
+  margin: 5px;
+}
+
+.question-input {
+  width: 90%;
+  color: white;
+  margin:5px;
+  padding: 5px;
+  background-color: rgba(255, 111, 0, 0.249);
+  border : none;
+  border-bottom: 1px solid yellow;
+}
+
+.answer-input, .score-input { 
+  
+  color: white;
+  margin:5px;
+  padding: 5px;
+  background-color: rgba(255, 111, 0, 0.249);
+  border : none;
+  border-bottom: 1px solid yellow;
+
+}
+.question-input { 
+  margin-bottom: 55px;
+  min-width: 50%;
+}
+.submit-button { 
+  transition: 0.5s;
+  color: #3b1f00;
+  background-color: #FFC107;
+  border: none;
+  padding: 10px;
+  margin-top : 45px;
+  width: 100%;
+}
+
+.manage-questions { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8b6522b;
+  padding: 15px;
+  border-bottom: 2px solid #2f922f;
+  border-top: 2px solid #2f922f;
+}
+
+.submit-button:hover { 
+  transition: 0.5s;
+  background-color: #FFFFFF;
+  color: black;
+}
+
+
 
 .app {
+  
   color: #FFFFFF;
   width: auto;
   min-height: 200px;
@@ -40,19 +113,29 @@ body {
   box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-top: 20px;
 }
 
 .score-section {
-
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-size: 24px;
   justify-content: center;
   align-items: center;
   margin-top: 15px;
+}
+
+li { 
+  margin-bottom: 10px;
+  list-style:none;
+}
+
+li:hover { 
+  background: #ff7000;
+  pointer: coarse;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -95,13 +178,13 @@ body {
 
 button {
   width: 100%;
+  transition: 0.5s;
   font-size: 16px;
-  color: black;
-  background-color: #D7CCC8;
-  border-radius: 5px;
+  color: #3b1f00;
+  background-color: #FFC107;
   display: flex;
-  padding: 5px;
-  justify-content: flex-start;
+  padding: 15px;
+  justify-content: center;
   align-items: center;
   border: none;
   cursor: pointer;
@@ -117,7 +200,9 @@ button {
 }
 
 button:hover {
-  background-color: #757575;
+  background-color: white;
+  color: black;
+  transition: 0.5s;
 }
 
 button:focus {
